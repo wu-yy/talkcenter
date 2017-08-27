@@ -1,0 +1,43 @@
+<?php TPL::output('global/header.tpl.htm'); ?>
+
+<div class="aw-container-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="aw-content-wrap clearfix">
+                <div class="aw-user-setting">
+                    <div class="tabbable">
+                        <h2><i class="icon icon-setting"></i> <?php _e('输入优惠码'); ?></h2>
+                    </div>
+
+                    <div class="tab-content clearfix">
+                        <dt>
+                            优惠码
+                        </dt>
+                        <dl>
+                            <dd>
+                                输入：
+                            </dd>
+                            <dd>
+                                <form id="put_form" method="post" action="code/check/" >
+                                    <input type="text" name="put_code"/>
+                                    <input type="submit" value="确认">
+                                </form>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <?php  if($this->result==true){ ?>
+                            <script type="text/javascript">
+                                    alert("优惠码使用成功！");
+                            </script>
+                            <?php  } ?>
+                        </dl>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<?php TPL::output('global/footer.tpl.htm'); ?>
