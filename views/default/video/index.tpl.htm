@@ -1,0 +1,17 @@
+<?php  TPL::output('global/header.tpl.htm');  ?>
+
+<video width="300" height="240" controls autoplay>
+    <source src="<?php _e(G_STATIC_URL); ?>/video/movie.mp4" type="video/mp4">
+    您的浏览器不支持 video 属性。
+</video>
+
+<script type="text/javascript">
+    $(document).ready(
+        function () {
+            console.info('测试2'+G_BASE_URL +'<?php _e(G_STATIC_URL); ?>');
+        }
+    )
+</script>
+
+
+<?php  TPL::output('global/footer.tpl.htm');  ?>
