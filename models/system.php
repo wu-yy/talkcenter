@@ -28,6 +28,8 @@ class system_class extends AWS_MODEL
 		{
 			if ($type)
 			{
+
+			    //TODO: wuyy 这里是在发布问题的时候选择问题的分类
 				$category_list_all_query = $this->fetch_all('category', '`type` = \'' . $this->quote($type) . '\'', $order);
 			}
 			else
@@ -48,7 +50,6 @@ class system_class extends AWS_MODEL
 		{
 			return array();
 		}
-
 		return $category_all;
 	}
 
@@ -66,6 +67,7 @@ class system_class extends AWS_MODEL
 		{
 			if (!$val['icon'])
 			{
+			    //TODO: 其中G_static_URL 是/talkcenter/static
 				$val['icon'] = G_STATIC_URL . '/css/default/img/default_class_imgs.png';
 			}
 			else

@@ -32,6 +32,7 @@ class ajax extends AWS_CONTROLLER
 
     public function setup()
     {
+        //echo '测试';
         HTTP::no_cache_header();
 
         if (!$this->user_info['permission']['is_administortar'] AND !$this->user_info['permission']['is_moderator'])

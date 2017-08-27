@@ -36,7 +36,7 @@ class TPL
 					//'filters' => array('Savant3_Filter_trimwhitespace', 'filter')
 				)
 			);
-
+             //TODO: 其中AWS_PATH = C:\wamp\www\talkcenter\system 是aws_app  aws _controller的父亲目录
 			if (file_exists(AWS_PATH . 'config.inc.php') AND class_exists('AWS_APP', false))
 			{
 				self::$in_app = true;
@@ -120,7 +120,10 @@ class TPL
 				}
 			}
 
-			if (get_setting('url_rewrite_enable') == 'Y' AND $template_dirs[0] != 'admin')			{				$output = preg_replace('/(href|action)=([\"|\'])(?!mailto)(?!file)(?!ftp)(?!http)(?!javascript)(?![\/|\#])(?!\.\/)([^\"\']+)([\"|\'])/is', '\1=\2' . base_url() . '/' . '\3\4', $output);			}
+			if (get_setting('url_rewrite_enable') == 'Y' AND $template_dirs[0] != 'admin')
+			{
+				$output = preg_replace('/(href|action)=([\"|\'])(?!mailto)(?!file)(?!ftp)(?!http)(?!javascript)(?![\/|\#])(?!\.\/)([^\"\']+)([\"|\'])/is', '\1=\2' . base_url() . '/' . '\3\4', $output);
+			}
 
 			//$output = preg_replace("/([a-zA-Z0-9]+_?[a-zA-Z0-9]+)-__|(__[a-zA-Z0-9]+_?[a-zA-Z0-9]+)-$/i", '', $output);
 			
@@ -256,7 +259,6 @@ class TPL
 		if (!isset(self::$output_matchs[md5($template_filename)]))
 		{
 			preg_match_all("/TPL::output\(['|\"](.+)['|\"]\)/i", self::fetch($template_filename), $matchs);
-
 			self::$output_matchs[md5($template_filename)] = $matchs[1];
 		}
 

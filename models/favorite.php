@@ -155,6 +155,7 @@ class favorite_class extends AWS_MODEL
 
 	public function get_item_list($tag, $uid, $limit)
 	{
+	    //limit  是 0，10
 		if (!$uid)
 		{
 			return false;
@@ -215,7 +216,7 @@ class favorite_class extends AWS_MODEL
 			{
 				foreach ($answer_infos AS $key => $data)
 				{
-					$question_ids[$val['question_id']] = $data['question_id'];
+					$question_ids[$data['question_id']] = $data['question_id'];
 					
 					$favorite_uids[$data['uid']] = $data['uid'];
 				}

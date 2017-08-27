@@ -20,6 +20,7 @@ class core_config
 	{
 		if (defined('IN_SAE'))
 		{
+		    //echo 'IN_ASE';
 			switch ($config_id)
 			{
 				case 'database':
@@ -43,7 +44,9 @@ class core_config
 				break;
 
 			}
-		}
+		}else{
+		    //echo array('Hello');
+        }
 
 		if (isset($this->config[$config_id]))
 		{

@@ -36,19 +36,26 @@ class main extends AWS_CONTROLLER
 
 	public function index_action()
 	{
+	    //导航栏添加title为 标签：TAG 形式
 		if ($_GET['tag'])
 		{
 			$this->crumb(AWS_APP::lang()->_t('标签') . ': ' . $_GET['tag'], '/favorite/tag-' . $_GET['tag']);
 		}
 
 		//边栏可能感兴趣的人或话题
+        //这里的判断是template_filename 是否在'global/header.tpl.htm'
+        //'block/sidebar_announce.tpl.htm'
+        // 'block/sidebar_menu.tpl.htm'
+        //'block/sidebar_recommend_users_topics.tpl.htm'
+        //'global/footer.tpl.htm'
 		if (TPL::is_output('block/sidebar_recommend_users_topics.tpl.htm', 'favorite/index'))
 		{
 			$recommend_users_topics = $this->model('module')->recommend_users_topics($this->user_id);
-
 			TPL::assign('sidebar_recommend_users_topics', $recommend_users_topics);
 		}
 
+		//TODO:在这里查找感兴趣的关键词
+        //echo calc_page_limit(1, get_setting('contents_per_page'));
 		if ($action_list = $this->model('favorite')->get_item_list($_GET['tag'], $this->user_id, calc_page_limit($_GET['page'], get_setting('contents_per_page'))))
 		{
 			foreach ($action_list AS $key => $val)

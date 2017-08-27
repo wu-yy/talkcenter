@@ -1455,4 +1455,18 @@ class account_class extends AWS_MODEL
 
         return true;
     }
+    //更新用户的余额
+    public function set_user_money($uid,$count)
+    {
+        $data['money']=$this->fetch_one('users','money',"uid='".$uid."'")+$count;
+        if(!$this->update('users',$data,"uid='".$uid."'"))
+        {
+            return true;  //用户的余额更新成功
+        }else{
+            return false;
+        }
+
+
+    }
+
 }

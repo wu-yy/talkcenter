@@ -10,6 +10,7 @@ var AWS =
 
 		if (type == 'show')
 		{
+			//alert('show');
 			if ($('#aw-loading').css('display') == 'block')
 			{
 				return false;
@@ -468,6 +469,7 @@ var AWS =
 					'category_id': data.category_id,
 					'ask_user_id': data.ask_user_id
 				});
+
 			break;
 
 			case 'redirect':
@@ -567,9 +569,7 @@ var AWS =
 			{
 				$('.alert-box').remove();
 			}
-
 			$('#aw-ajax-box').html(template).show();
-
 			switch (type)
 			{
 				case 'redirect' :
@@ -592,8 +592,8 @@ var AWS =
 					{
 						$.get(G_BASE_URL + '/publish/ajax/fetch_question_category/', function (result)
 						{
+							//在刚开始的时候 data.catafory_id是0
 							AWS.Dropdown.set_dropdown_list('.aw-publish-box .dropdown', eval(result), data.category_id);
-
 							$('.aw-publish-title .dropdown li a').click(function ()
 							{
 								$('.aw-publish-box #quick_publish_category_id').val($(this).attr('data-value'));
@@ -611,8 +611,10 @@ var AWS =
 						$('.aw-publish-box .modal-title').html('向 ' + data.ask_user_name + ' 提问');
 					}
 
+					//TODO:1 看到这里
 					if ($('#aw-search-query').val() && $('#aw-search-query').val() != $('#aw-search-query').attr('placeholder'))
 					{
+
 						$('#quick_publish_question_content').val($('#aw-search-query').val());
 					}
 
@@ -624,6 +626,7 @@ var AWS =
 
 					if (data.topic_title)
 					{
+						AWS.Print(data.topic_title,90);
 						$('#quick_publish .aw-edit-topic').parents('.aw-topic-bar').prepend('<span class="topic-tag"><a class="text">' + data.topic_title + '</a><a class="close" onclick="$(this).parents(\'.topic-tag\').detach();"><i class="icon icon-delete"></i></a><input type="hidden" value="' + data.topic_title + '" name="topics[]" /></span>')
 					}
 
@@ -634,6 +637,8 @@ var AWS =
 					}
 				break;
 
+
+				///TODO:喜欢
 				case 'favorite':
 					$.get(G_BASE_URL + '/favorite/ajax/get_favorite_tags/', function (result)
 					{
@@ -833,6 +838,15 @@ var AWS =
 			$(".alert-box").modal('show');
 		}
 	},
+
+	//console 输出调试的信息
+	Print:function (info,id) {
+
+			console.info('-start--'+id+'---');
+			console.info(info);
+			console.info('-end--');
+    },
+
 
 	// 兼容placeholder
 	check_placeholder: function(selector)
@@ -1905,6 +1919,7 @@ AWS.User =
 
 AWS.Dropdown =
 {
+	//TODO: 2 在这里所有的下拉菜单管理
 	// 下拉菜单功能绑定
 	bind_dropdown_list: function(selector, type)
 	{
@@ -1914,6 +1929,7 @@ AWS.Dropdown =
 			{
 				$(selector).parent().find('.aw-dropdown').show();
 			});
+
 		}
 		$(selector).keyup(function(e)
 		{
@@ -2026,6 +2042,8 @@ AWS.Dropdown =
 		});
 	},
 
+
+	//TODO:3  在这里面插入下拉菜单
 	// 插入下拉菜单
 	set_dropdown_list: function(selector, data, selected)
 	{
@@ -2051,6 +2069,8 @@ AWS.Dropdown =
 	*/
 	get_dropdown_list: function(selector, type, data)
 	{
+
+		//AWS.Print($(selector).parent(),4);
 		if (AWS.G.dropdown_list_xhr != '')
 		{
 			AWS.G.dropdown_list_xhr.abort(); // 中止上一次ajax请求
@@ -2169,6 +2189,7 @@ AWS.Dropdown =
 					case 'topic_question' :
 						$.each(result, function (i, a)
 						{
+
 							$(selector).parent().find('.aw-dropdown-list').append(Hogan.compile(AW_TEMPLATE.questionDropdownList).render(
 							{
 								'url': a.url,

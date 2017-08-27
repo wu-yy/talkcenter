@@ -29,7 +29,7 @@ class setting_class extends AWS_MODEL
 				$settings[$val['varname']] = unserialize($val['value']);
 			}
 		}
-
+        //var_dump(sizeof($settings));
 		return $settings;
 	}
 
