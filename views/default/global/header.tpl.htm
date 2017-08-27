@@ -72,6 +72,13 @@
 								<?php if (check_extension_package('project') && get_setting('project_enabled') == 'Y') { ?>
 								<li><a href="project/"<?php if ($_GET['app'] == 'project') { ?> class="active"<?php } ?>><i class="icon icon-activity"></i> <?php _e('活动'); ?></a></li>
 								<?php } ?>
+								<li>
+									<a href="code/" <?php if ($_GET['app']=='code') { ?> class="active" <?php } ?>   >
+										<i class="icon icon-best">
+
+										</i><?php _e('优惠码') ?>
+									</a>
+								</li>
 							</ul>
 						</div>
 					</li>
